@@ -40,7 +40,7 @@ module.exports = {
                   age: req.body.age,
                   rollno: req.body.rollno,
                   sid: req.body.sid,
-                  startDate: new Date()
+                  startDate: req.body.startDate
               });
               bcrypt.genSalt(10, (err, salt) => {
                 bcrypt.hash(newstudent.password, salt, (err, hash) => {

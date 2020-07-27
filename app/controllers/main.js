@@ -9,12 +9,21 @@ module.exports = {
             try {
                 var input  = new RegExp(
                        functions.escaperegex(req.query.search), 'gi'
-                    );
+                    ); 
                 User.find({
-                    $or: [
-                        { name: input },
-                        { gender: input }, 
-                        { email: input }
+                    $and: [
+                        {
+                          $or: [
+                            { name: input },
+                            { gender: input }, 
+                            { email: input }
+                          ]
+                        },
+                        {
+                            name :{
+                                $ne :"Admin"
+                            }
+                        }
                     ]
                 }).then(foundstudents => {
                     if(!foundstudents){
@@ -35,8 +44,11 @@ module.exports = {
                 throw err;
             }
         }else{
-            User.find()
-            .then(students => {
+            User.find({
+                name :{
+                    $ne :"Admin"
+                }
+            }).then(students => {
                 res.render('pages/home' , {
                     students: students,
                     noMatch: noMatch,

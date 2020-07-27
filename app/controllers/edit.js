@@ -23,7 +23,8 @@ module.exports = {
             password: req.body.password,
             age: req.body.age,
             rollno: req.body.rollno,
-            sid: req.body.sid
+            sid: req.body.sid,
+            startDate: req.body.startDate
         }).then(updatedstudent => {
             req.flash('success_msg', 'You updated the student successfully');
             res.redirect('/');

@@ -19,39 +19,45 @@
   <% } %>
 </div>
 <div class="container">
+  <div class="d-flex justify-content-center m-3">
+    <div class="spinner-border text-primary" 
+        id="spinner" role="status"> 
+        <span class="sr-only">Loading...</span> 
+    </div>
+  </div>
   <% if(students.length > 0){ %>
     <table class="table">
       <thead>
-        <tr>
-          <th>Roll No.</th>
-          <th>Name</th>
-          <th>SID</th>
+        <tr class="col-*-10">
+          <th class="col-*-2">Roll No.</th>
+          <th class="col-*-2">Name</th>
+          <th class="col-*-2">SID</th>
           <% if(currentUser && currentUser.name == 'Admin'){ %>
-            <th>Update</th>
-            <th>Delete</th>
+            <th class="col-*-2">Update</th>
+            <th class="col-*-2">Delete</th>
           <% } %>
         </tr>
       </thead>
-      <tbody id="studentTable">
+      <tbody id="studentTable" class="col-*-10">
         <% students.forEach((student) => { %>
           <tr>
-            <th scope="row">
+            <th scope="row col-*-2">
               <a href="/<%= student._id %>/profile" class="text-decoration-none">
                 <%= student.rollno %>
               </a>
             </th>
-            <th>
+            <th class="col-*-2">
               <a href="/<%= student._id %>/profile" class="text-decoration-none">
                 <%= student.name %>
               </a>
             </th>
-            <th>
+            <th class="col-*-2">
               <a href="/<%= student._id %>/profile" class="text-decoration-none">
                 <%= student.sid %>
               </a>
             </th>
             <% if(currentUser && currentUser.name == "Admin"){ %>
-              <th>
+              <th class="col-*-2">
                 <div class="form-group">
                   <a href="/<%= student._id %>/edit"
                      class="btn btn-warning">
@@ -59,7 +65,7 @@
                   </a>
                 </div>
               </th>
-              <th>
+              <th class="col-*-2">
                 <form action="/<%= student._id %>?_method=DELETE"
                       method="post">
                   <button class="btn btn-danger">Delete</button>
@@ -74,12 +80,12 @@
   <div class="row d-flex justify-content-center m-2">
     <p class="lead" style="font-size: 20px;">
       <% if(students.length <= 0){ %>
-        No student
+        No
       <% } %>
       <%= students.length %>
-      <% if(students.length > 1){ %>students are
+      <% if(students.length > 1){ %> students are
       <% }else{ %>
-        is
+         student is
       <% } %> found
      </p>
   </div>
