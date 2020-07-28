@@ -11,7 +11,8 @@ var express           = require('express'),
     newcontroller     = require('./controllers/new'),
     editcontroller    = require('./controllers/edit');
 router.use(methodOverride('_method'));
-router.get('/', parseUrlencoded, maincontroller.GetHomePage);
+router.get('/', parseUrlencoded, authentication.isLoggedIn,
+                                 maincontroller.GetHomePage);
 router.get('/:id/profile', parseUrlencoded, profilecontroller.GetStudentProfile);
 router.get('/logout', parseUrlencoded, authentication.isLoggedIn,
                                        authentication.logout);

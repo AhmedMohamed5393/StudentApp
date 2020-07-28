@@ -1,4 +1,3 @@
-require('dotenv').config({ path: '.env' });
 var express       = require('express'),
     path          = require('path'),
     mongoose      = require('mongoose'),
@@ -13,6 +12,7 @@ var express       = require('express'),
     host          = process.env.ip || 'localhost',
     port          = process.env.port || 3000,
     app           = express();
+require('dotenv').config({ path: '.env' });
 require('./app/middlewares/passport')(passport);
 mongoose.connect(process.env.MONGO_URI , { 
     useUnifiedTopology : true, 
